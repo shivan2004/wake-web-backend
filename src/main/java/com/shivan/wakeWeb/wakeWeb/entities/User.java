@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@Table(name = "app_user")
+@Table(name = "app_user_wake_web")
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class User implements UserDetails {

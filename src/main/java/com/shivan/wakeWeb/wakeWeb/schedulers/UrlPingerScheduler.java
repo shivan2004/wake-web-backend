@@ -10,11 +10,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.List;
 
@@ -28,8 +26,9 @@ public class UrlPingerScheduler {
     private final WebClient webClient = WebClient.builder()
             .build();
 
+
     @Transactional
-    @Scheduled(fixedRate = 600_0) // every 10 minutes
+    @Scheduled(fixedRateString = "${timeout.duration}")
 //    @Scheduled(cron = "0 * * * * *") // every 1 minute at 0 seconds
     public void pingUrls() {
         log.info("Running URL ping scheduler...");
@@ -38,7 +37,7 @@ public class UrlPingerScheduler {
 
         for (Url url : activeUrls) {
             log.info("{}", url);
-            //todo; transactional, after each iteration it shuld store in db
+            //todo; transactional, after each iteration it should store in db
             try {
                 var response = webClient.get()
                         .uri(url.getUrl())
