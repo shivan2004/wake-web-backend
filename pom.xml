@@ -119,6 +119,10 @@
 			<version>4.1.119.Final</version> <!-- Match the version in your logs -->
 			<classifier>osx-aarch_64</classifier> <!-- or osx-x86_64 if on Intel Mac -->
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
 
 	</dependencies>
 
@@ -150,7 +154,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>wakeWeb-0.0.1-SNAPSHOT</finalName>
+<!--		<finalName>wakeWeb-0.0.1-SNAPSHOT</finalName>-->
 	</build>
 
 </project>
