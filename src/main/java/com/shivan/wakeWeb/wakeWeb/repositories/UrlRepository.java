@@ -16,4 +16,5 @@ public interface UrlRepository extends JpaRepository<Url, Long> {
 //    Long countAllByActive(true);
 
     Long countAllByIsActiveIsTrue();
+    List<Url> findAllByIsActiveIsTrue();
 }

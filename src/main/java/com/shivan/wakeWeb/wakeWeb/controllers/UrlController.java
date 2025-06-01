@@ -44,7 +44,7 @@ public class UrlController {
 
     @PutMapping("/pause/{id}")
     public ResponseEntity<?> pauseScheduling(@PathVariable Long id) {
-        urlService.deleteUrl(id);
+        urlService.pauseScheduling(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

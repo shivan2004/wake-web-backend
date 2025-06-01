@@ -14,6 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class UrlServiceImpl implements UrlService {
         User user = userService.getCurrentUser();
         List<Url> urlsOfUser = urlRepository.findAllByUser(user);
         return urlsOfUser.stream()
-                .map(url ->modelMapper.map(url, UrlResponseDTO.class))
+                .map(url -> modelMapper.map(url, UrlResponseDTO.class))
                 .toList();
     }
 
@@ -56,7 +57,7 @@ public class UrlServiceImpl implements UrlService {
     public void retryScheduling(Long id) {
         Url url = getUrlById(id);
         User user = userService.getCurrentUser();
-        if(!url.getUser().equals(user)) throw new RuntimeException("Illegal access");
+        if(!url.getUser().getId().equals(user.getId())) throw new RuntimeException("Illegal access");
 
         if(url.isActive()) throw new RuntimeException("Url is active, it might take some time to refresh");
         url.setActive(true);
@@ -72,7 +73,7 @@ public class UrlServiceImpl implements UrlService {
     public void deleteUrl(Long id) {
         Url url = getUrlById(id);
         User user = userService.getCurrentUser();
-        if(!url.getUser().equals(user)) throw new RuntimeException("Illegal access");
+        if(!url.getUser().getId().equals(user.getId())) throw new RuntimeException("Illegal access");
 
         urlRepository.delete(url);
     }
@@ -81,7 +82,7 @@ public class UrlServiceImpl implements UrlService {
     public void pauseScheduling(Long id) {
         Url url = getUrlById(id);
         User user = userService.getCurrentUser();
-        if(!url.getUser().equals(user)) throw new RuntimeException("Illegal access");
+        if(!url.getUser().getId().equals(user.getId())) throw new RuntimeException("Illegal access");
 
         if(!url.isActive()) throw new RuntimeException("Url is not active");
 

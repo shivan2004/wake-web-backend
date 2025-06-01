@@ -5,6 +5,7 @@ import com.shivan.wakeWeb.wakeWeb.exceptions.AlreadyExistsException;
 import com.shivan.wakeWeb.wakeWeb.exceptions.BadRequestException;
 import com.shivan.wakeWeb.wakeWeb.exceptions.ResourceNotFoundException;
 import com.shivan.wakeWeb.wakeWeb.exceptions.RuntimeConflictException;
+import org.hibernate.exception.GenericJDBCException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -100,4 +101,16 @@ public class GlobalExceptionHandler {
                 .build();
         return buildErrorResponseEntity(apiError);
     }
+
+
+//    @ExceptionHandler(GenericJDBCException.class)
+//    public void handleGenericJDBCException(GenericJDBCException genericJDBCException) {
+//
+//    }
+//
+//    @ExceptionHandler(Exception.class)
+//    public void handleException(Exception exception) {
+//
+//    }
+
 }

@@ -3,6 +3,7 @@ package com.shivan.wakeWeb.wakeWeb.advices;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 @Data
 public class ApiResponse<T> {
@@ -12,7 +13,7 @@ public class ApiResponse<T> {
     private ApiError error;
 
     public ApiResponse() {
-        this.timeStamp = LocalDateTime.now();
+        this.timeStamp = LocalDateTime.now(ZoneOffset.UTC);
     }
 
     public ApiResponse(T data) {

@@ -4,6 +4,7 @@ package com.shivan.wakeWeb.wakeWeb.entities;
 import com.shivan.wakeWeb.wakeWeb.entities.enums.PingStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 

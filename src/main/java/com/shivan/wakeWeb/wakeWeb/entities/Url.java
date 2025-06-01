@@ -2,12 +2,10 @@ package com.shivan.wakeWeb.wakeWeb.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.antlr.v4.runtime.misc.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 
 @Entity
@@ -42,6 +40,23 @@ public class Url {
     private LocalDateTime expiryDate;
 
     // Persisted: All logs associated with this URL
-    @OneToMany(mappedBy = "url", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "url", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OrderBy("timeStamp DESC") // or ASC for oldest first
     private List<PingLogs> pingLogs;
+
+    @CreationTimestamp
+    private LocalDateTime timeStamp;
+
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "title = " + title + ", " +
+                "url = " + url + ", " +
+                "isActive = " + isActive + ", " +
+                "positivePings = " + positivePings + ", " +
+                "negativePings = " + negativePings + ", " +
+                "expiryDate = " + expiryDate + ")";
+    }
 }

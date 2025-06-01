@@ -113,6 +113,13 @@
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-resolver-dns-native-macos</artifactId>
+			<version>4.1.119.Final</version> <!-- Match the version in your logs -->
+			<classifier>osx-aarch_64</classifier> <!-- or osx-x86_64 if on Intel Mac -->
+		</dependency>
+
 	</dependencies>
 
 

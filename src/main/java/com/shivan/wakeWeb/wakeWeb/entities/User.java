@@ -29,6 +29,7 @@ public class User implements UserDetails {
     private String email;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("timeStamp DESC") // or ASC for oldest first
     private List<Url> urlsList;
 
     @Override

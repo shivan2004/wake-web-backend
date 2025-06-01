@@ -19,7 +19,7 @@ public class AdminController {
 
     private final UrlService urlService;
 
-    @GetMapping("getActiveUrls")
+    @GetMapping("/getActiveUrlsCount")
     public ResponseEntity<Long> getActiveUrls() {
         return ResponseEntity.ok(urlService.getActiveUrls());
     }
